@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Webサイト制作サンプル</title>
+  <meta name="description" content="架空の企業を想定して制作したWebサイトのサンプル集です。">
+  <style>
+    /* 一覧ページは1ファイルだけなので、CSSもここに書いている */
+    body {
+      margin: 0;
+      padding: 72px 24px;
+      background: #fafafa;
+      color: #1a1a1a;
+      font-family: "Hiragino Sans", "Meiryo", sans-serif;
+      line-height: 1.9;
+    }
+    main { max-width: 760px; margin: 0 auto; }
+    h1 { font-size: 1.8rem; margin: 0 0 8px; }
+    .lead { color: #5f5f5f; margin: 0 0 48px; }
+    ul { list-style: none; padding: 0; margin: 0; border-top: 1px solid #1a1a1a; }
+    li { border-bottom: 1px solid #dcdcdc; }
+    a { display: block; padding: 24px 0; color: inherit; text-decoration: none; }
+    a:hover h2, a:focus-visible h2 { text-decoration: underline; }
+    a:focus-visible { outline: 2px solid #1a1a1a; outline-offset: 4px; }
+    h2 { font-size: 1.25rem; margin: 0; }
+    p { margin: 4px 0 0; color: #5f5f5f; }
+    .soon { padding: 24px 0; color: #8a8a8a; }
+    footer { margin-top: 48px; font-size: 0.85rem; color: #8a8a8a; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Webサイト制作サンプル</h1>
+    <p class="lead">架空の企業を想定し、業種に合わせてデザインと機能を作り分けたサンプルです。</p>
+
+    <!-- サイトを追加したら、li を1つコピーしてフォルダ名と説明を書き換える -->
+    <ul>
+      <li>
+        <a href="01-clinic/">
+          <h2>みなもとリハビリクリニック</h2>
+          <p>医療:整形外科・リハビリのクリニック。今日の診療時間の自動表示、スマホ対応。</p>
+        </a>
+      </li>
+      <li class="soon">建築:設計事務所(制作中)</li>
+      <li class="soon">IT:勤怠管理アプリの紹介ページ(制作中)</li>
+      <li class="soon">飲食:焼肉店(制作中)</li>
+    </ul>
+
+    <footer>掲載している企業、人物、住所はすべて架空のものです。</footer>
+  </main>
+</body>
+</html>

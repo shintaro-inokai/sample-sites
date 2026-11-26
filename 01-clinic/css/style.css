@@ -1,0 +1,325 @@
+/* =========================================================
+   みなもとリハビリクリニック style.css
+   【つながり】index.html の class="○○" は、ここの .○○ で見た目を決める
+   ========================================================= */
+
+/* ---------- 1. 色と文字(ここを変えるとサイト全体が変わる) ---------- */
+:root {
+  --white: #ffffff;
+  --tint: #eef5f2;     /* うすい緑がかった背景(交互のセクション) */
+  --ink: #1f2b29;      /* 本文の文字 */
+  --sub: #4c5a57;      /* 補足の文字 */
+  --line: #d3e0db;     /* 区切り線 */
+  --main: #22695b;     /* クリニックの色(深い緑) */
+  --main-soft: #d6ebe4;/* クリニックの色をうすくしたもの */
+
+  --round: "Zen Maru Gothic", "Hiragino Maru Gothic ProN", sans-serif; /* 見出し */
+  --gothic: "Zen Kaku Gothic New", "Hiragino Sans", "Meiryo", sans-serif; /* 本文 */
+}
+
+/* ---------- 2. 全体の基本 ---------- */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; scroll-padding-top: 80px; } /* 固定ヘッダーの下に隠れないように */
+
+body {
+  font-family: var(--gothic);
+  font-size: 17px;          /* 高齢の方にも読みやすいよう少し大きめ */
+  line-height: 1.9;
+  color: var(--ink);
+  background: var(--white);
+}
+
+a { color: var(--main); }
+a:focus-visible, button:focus-visible, summary:focus-visible {
+  outline: 3px solid var(--main);
+  outline-offset: 3px;
+}
+
+h1, h2, h3 { font-family: var(--round); font-weight: 700; line-height: 1.5; }
+h2 { font-size: 1.75rem; margin-bottom: 32px; }
+h3 { font-size: 1.2rem; }
+
+/* 中身の幅をそろえる箱(どのセクションでも使う) */
+.inner { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+
+.section { padding: 80px 0; }
+.section-tint { background: var(--tint); }
+
+/* 「本文へ移動」リンク:普段は画面の外、キーボードで選ぶと出てくる */
+.skip { position: absolute; left: -9999px; }
+.skip:focus { left: 16px; top: 16px; z-index: 100; background: var(--white); padding: 8px 16px; }
+
+/* ---------- 3. ヘッダー(上に固定) ---------- */
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: var(--white);
+  border-bottom: 1px solid var(--line);
+}
+.header-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 12px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.logo { text-decoration: none; color: var(--ink); display: flex; flex-direction: column; line-height: 1.4; }
+.logo-name { font-family: var(--round); font-weight: 700; font-size: 1.15rem; }
+.logo-sub { font-size: 0.75rem; color: var(--sub); }
+
+.nav { display: flex; align-items: center; gap: 28px; }
+.nav ul { display: flex; gap: 22px; list-style: none; }
+.nav ul a { color: var(--ink); text-decoration: none; font-size: 0.95rem; }
+.nav ul a:hover { color: var(--main); text-decoration: underline; }
+.nav-tel {
+  background: var(--main);
+  color: var(--white);
+  text-decoration: none;
+  font-weight: 700;
+  padding: 8px 16px;
+  border-radius: 6px;
+  white-space: nowrap;
+}
+
+/* メニューボタンはスマホのときだけ表示(下の 9. で表示する) */
+.menu-button { display: none; }
+
+/* ---------- 4. ファーストビュー ---------- */
+.hero { background: var(--tint); padding: 72px 0 80px; }
+.hero-inner {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); /* minmax(0, …) で写真の元の幅に引っぱられないようにする */
+  gap: 48px;
+  align-items: center;
+}
+/* 写真:枠いっぱいに切り抜いて表示(object-fit: cover) */
+.hero-photo {
+  width: 100%;
+  height: 100%;
+  min-height: 420px;
+  object-fit: cover;
+  object-position: 55% center; /* 切り抜くときの中心(施術している手元が入るように少し右寄り) */
+  border-radius: 12px;
+  display: block;
+}
+.hero h1 { font-size: clamp(2rem, 4.6vw, 3.1rem); color: var(--main); }
+.hero-text p { margin-top: 20px; max-width: 32em; }
+.hero-place { font-weight: 700; }
+
+/* 本日の診療 */
+.today {
+  margin-top: 28px;
+  max-width: 26em;
+  background: var(--white);
+  border: 2px solid var(--main);
+  border-radius: 12px;
+  padding: 28px;
+}
+.today-label { font-size: 0.9rem; color: var(--sub); }
+.today-status { font-family: var(--round); font-weight: 700; font-size: 1.3rem; margin: 6px 0 14px; line-height: 1.6; }
+.today-link { font-size: 0.95rem; }
+
+/* ---------- 5. お知らせ ---------- */
+.news { list-style: none; border-top: 1px solid var(--line); }
+.news li {
+  display: grid;
+  grid-template-columns: 11em 1fr;
+  gap: 16px;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--line);
+}
+.news time { color: var(--sub); }
+
+/* ---------- 6. 診療案内(3つ横並び) ---------- */
+.services { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.service {
+  background: var(--white);
+  border-top: 4px solid var(--main);
+  border-radius: 0 0 10px 10px;
+  padding: 0 28px 28px;
+  overflow: hidden;
+}
+/* 写真はカードの端までいっぱいに広げる(左右の padding 分だけはみ出させる) */
+.service img {
+  display: block;
+  width: calc(100% + 56px);
+  margin: 0 -28px 20px;
+  aspect-ratio: 3 / 2;
+  height: auto;
+  object-fit: cover;
+}
+.service p { margin-top: 12px; }
+.service-for { color: var(--sub); font-size: 0.92rem; }
+
+/* ---------- 7. 診療時間の表 ---------- */
+.table-wrap { overflow-x: auto; } /* スマホで表がはみ出したら横にスクロール */
+.hours {
+  width: 100%;
+  min-width: 560px;
+  border-collapse: collapse;
+  text-align: center;
+  background: var(--white);
+}
+.hours caption { caption-side: bottom; text-align: left; padding-top: 12px; color: var(--sub); font-size: 0.92rem; }
+.hours th, .hours td { border: 1px solid var(--line); padding: 14px 8px; }
+.hours thead th { background: var(--main); color: var(--white); font-weight: 700; }
+.hours tbody th { background: var(--tint); font-weight: 700; white-space: nowrap; }
+.hours td { font-size: 1.15rem; color: var(--main); }
+.hours td.closed { color: var(--sub); font-size: 0.95rem; }
+
+/* 【つながり】js/script.js が今日の列に class="is-today" をつける → ここで色が変わる */
+.hours .is-today { background: var(--main-soft); }
+.hours thead .is-today { background: #174a40; }
+.hours thead .is-today::after { content: "今日"; display: block; font-size: 0.7rem; font-weight: 500; }
+
+.note { margin-top: 16px; }
+
+/* ---------- 8. 初めての方へ(番号つきの手順) ---------- */
+.steps {
+  list-style: none;
+  counter-reset: step;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+.steps li {
+  counter-increment: step;
+  background: var(--white);
+  border-radius: 10px;
+  padding: 24px;
+}
+.steps li::before {
+  content: counter(step);         /* 1, 2, 3, 4 が自動で入る */
+  display: grid;
+  place-items: center;
+  width: 2.2em;
+  height: 2.2em;
+  border-radius: 50%;
+  background: var(--main);
+  color: var(--white);
+  font-family: var(--round);
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+.steps p { margin-top: 8px; font-size: 0.95rem; }
+
+/* ---------- 9. 医師紹介・アクセス ---------- */
+.doctor { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr) minmax(0, 1.8fr); gap: 40px; align-items: start; }
+.access { display: grid; grid-template-columns: 1fr 3fr; gap: 40px; }
+.doctor-photo { width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 10px; display: block; }
+.doctor h2, .access h2 { margin-bottom: 0; }
+.doctor-name { font-family: var(--round); font-weight: 700; font-size: 1.3rem; margin-bottom: 12px; }
+.doctor-name span { font-family: var(--gothic); font-weight: 400; font-size: 0.85rem; color: var(--sub); margin-left: 8px; }
+
+.doctor-data, .access-data {
+  display: grid;
+  grid-template-columns: 6em 1fr;
+  gap: 8px 16px;
+  margin-top: 20px;
+}
+.doctor-data dt, .access-data dt { font-weight: 700; color: var(--main); }
+.access-data { margin-top: 0; }
+
+.access-body { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+.map {
+  min-height: 240px;
+  border: 2px dashed var(--line);
+  border-radius: 10px;
+  background: var(--white);
+  display: grid;
+  place-items: center;
+  text-align: center;
+  color: var(--sub);
+}
+
+/* ---------- 10. よくある質問 ---------- */
+.faq { border-top: 1px solid var(--line); }
+.faq details { border-bottom: 1px solid var(--line); }
+.faq summary {
+  cursor: pointer;
+  padding: 18px 40px 18px 0;
+  font-weight: 700;
+  list-style: none;      /* 標準の三角マークを消す */
+  position: relative;
+}
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after {    /* 右端の「+」 */
+  content: "+";
+  position: absolute;
+  right: 8px;
+  color: var(--main);
+  font-size: 1.4rem;
+  line-height: 1.4;
+}
+.faq details[open] summary::after { content: "−"; } /* 開いているときは「−」 */
+.faq details p { padding: 0 0 20px; color: var(--sub); }
+
+/* ---------- 11. フッター ---------- */
+.footer { background: var(--ink); color: #dfe7e4; padding: 48px 0; font-size: 0.9rem; }
+.footer p + p { margin-top: 8px; }
+.footer-name { font-family: var(--round); font-weight: 700; font-size: 1.1rem; color: var(--white); }
+.footer-note { color: #aebbb7; }
+
+/* =========================================================
+   12. 画面が狭いとき(タブレット・スマホ)
+   ========================================================= */
+@media (max-width: 960px) {
+  .services { grid-template-columns: 1fr; }
+  .steps { grid-template-columns: repeat(2, 1fr); }
+  .hero-inner { grid-template-columns: 1fr; }
+  .hero-photo { min-height: 0; aspect-ratio: 3 / 2; }
+}
+
+@media (max-width: 800px) {
+  /* メニューボタンを出し、メニューは普段隠す */
+  .menu-button {
+    display: block;
+    background: var(--main);
+    color: var(--white);
+    border: none;
+    border-radius: 6px;
+    padding: 8px 14px;
+    font: inherit;
+    font-weight: 700;
+    cursor: pointer;
+  }
+  .nav {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: var(--white);
+    border-bottom: 1px solid var(--line);
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    padding: 8px 24px 20px;
+  }
+  /* 【つながり】js/script.js が class="is-open" をつけるとメニューが出る */
+  .nav.is-open { display: flex; }
+  .nav ul { flex-direction: column; gap: 0; }
+  .nav ul a { display: block; padding: 12px 0; border-bottom: 1px solid var(--line); }
+  .nav-tel { margin-top: 16px; text-align: center; }
+
+  .doctor, .access, .access-body { grid-template-columns: 1fr; gap: 20px; }
+  .news li { grid-template-columns: 1fr; gap: 0; }
+  .section { padding: 56px 0; }
+}
+
+@media (max-width: 520px) {
+  .steps { grid-template-columns: 1fr; }
+}
+
+/* 動きを減らす設定の人には、なめらかスクロールを止める */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}

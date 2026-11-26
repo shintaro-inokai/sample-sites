@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <!-- スマホで正しい幅で表示するための1行(必ず入れる) -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>みなもとリハビリクリニック | 整形外科・リハビリテーション科</title>
+  <meta name="description" content="架空のクリニックを想定した制作サンプルです。">
+
+  <!-- フォント(Google Fonts) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Zen+Maru+Gothic:wght@500;700&display=swap" rel="stylesheet">
+
+  <!-- 【つながり①】見た目は css フォルダの style.css に書く -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- キーボード操作の人が、メニューを飛ばして本文へ行けるリンク(普段は隠れている) -->
+  <a href="#main" class="skip">本文へ移動</a>
+
+  <!-- ============ ヘッダー ============ -->
+  <header class="header">
+    <div class="header-inner">
+      <a href="#top" class="logo">
+        <span class="logo-name">みなもとリハビリクリニック</span>
+        <span class="logo-sub">整形外科・リハビリテーション科</span>
+      </a>
+
+      <!-- 【つながり②】このボタンを押すと js/script.js がメニューを開け閉めする -->
+      <button class="menu-button" id="menu-button" aria-expanded="false" aria-controls="global-nav">
+        メニュー
+      </button>
+
+      <!-- 【つながり③】href="#hours" は、下の id="hours" の場所へ移動する -->
+      <nav class="nav" id="global-nav" aria-label="メインメニュー">
+        <ul>
+          <li><a href="#services">診療案内</a></li>
+          <li><a href="#hours">診療時間</a></li>
+          <li><a href="#first">初めての方へ</a></li>
+          <li><a href="#access">アクセス</a></li>
+          <li><a href="#faq">よくある質問</a></li>
+        </ul>
+        <a href="tel:000-000-0000" class="nav-tel">電話 000-000-0000</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <!-- ============ ファーストビュー ============ -->
+    <section class="hero" id="top">
+      <div class="hero-inner">
+        <div class="hero-text">
+          <h1>からだの痛みを、<br>動ける毎日へ。</h1>
+          <p>首・肩・腰・ひざの痛みから、けが、スポーツ障害まで。医師の診察と理学療法士のリハビリで、日常生活への復帰を支えます。</p>
+          <p class="hero-place">みなもと駅 東口から徒歩3分、駐車場5台</p>
+
+          <!-- 【つながり④】中身は js/script.js が「今日の曜日」から自動で書き込む -->
+          <div class="today" aria-live="polite">
+            <p class="today-label">本日の診療</p>
+            <p class="today-status" id="today-status">読み込み中…</p>
+            <a href="#hours" class="today-link">診療時間の一覧を見る</a>
+          </div>
+        </div>
+
+        <!-- 写真(Unsplash の無料写真。出典は README.md に記載) -->
+        <!-- width と height を書いておくと、読み込み中にページがガタつかない -->
+        <img class="hero-photo"
+             src="https://images.unsplash.com/photo-1649751361457-01d3a696c7e6?w=1200&q=80&auto=format&fit=crop"
+             alt="理学療法士が仰向けの患者のひざを曲げ、状態を確かめながら施術している様子"
+             width="1200" height="800">
+      </div>
+    </section>
+
+    <!-- ============ お知らせ ============ -->
+    <section class="section" id="news">
+      <div class="inner">
+        <h2>お知らせ</h2>
+        <ul class="news">
+          <li><time datetime="2026-12-01">2026年12月1日</time><span>年末年始の休診日について(12月29日〜1月3日)</span></li>
+          <li><time datetime="2026-11-15">2026年11月15日</time><span>インフルエンザ流行期のため、来院時はマスクの着用をお願いします</span></li>
+          <li><time datetime="2026-10-01">2026年10月1日</time><span>土曜日の受付時間を13:00までに変更しました</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============ 診療案内 ============ -->
+    <section class="section section-tint" id="services">
+      <div class="inner">
+        <h2>診療案内</h2>
+        <div class="services">
+          <article class="service">
+            <!-- loading="lazy" … 画面に近づくまで読み込まない(表示が速くなる) -->
+            <img src="https://images.unsplash.com/photo-1768507423533-b87b62769758?w=800&q=80&auto=format&fit=crop"
+                 alt="施術者が患者の背中と首の状態を手で確かめている様子"
+                 width="800" height="533" loading="lazy">
+            <h3>整形外科</h3>
+            <p>骨、関節、筋肉、神経の痛みやしびれを診察します。レントゲン検査で原因を確かめてから治療方針を決めます。</p>
+            <p class="service-for">主な症状:腰痛、肩こり、ひざの痛み、骨折、ねんざ</p>
+          </article>
+          <article class="service">
+            <img src="https://images.unsplash.com/photo-1645005512942-a17817fb7c11?w=800&q=80&auto=format&fit=crop"
+                 alt="理学療法士の指導でゴムバンドを使った運動をしている様子"
+                 width="800" height="533" loading="lazy">
+            <h3>リハビリテーション</h3>
+            <p>理学療法士が一人ひとりの状態を評価し、運動療法を中心としたプログラムを作ります。自宅でできる運動もお伝えします。</p>
+            <p class="service-for">主な対象:手術後の回復、姿勢の改善、転倒の予防</p>
+          </article>
+          <article class="service">
+            <img src="https://images.unsplash.com/photo-1540205895360-4ad4cffb3aa8?w=800&q=80&auto=format&fit=crop"
+                 alt="施術者が、ひざをついた人の背中を押してストレッチを補助している様子"
+                 width="800" height="533" loading="lazy">
+            <h3>スポーツ障害</h3>
+            <p>部活動や趣味のスポーツで起きたけがを診ます。競技への復帰を目標に、段階的なトレーニングを行います。</p>
+            <p class="service-for">主な症状:肉離れ、野球肘、ジャンパー膝、疲労骨折</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 診療時間 ============ -->
+    <!-- 【つながり⑤】各列の data-day(0=日曜〜6=土曜)を js/script.js が読み、今日の列に色をつける -->
+    <section class="section" id="hours">
+      <div class="inner">
+        <h2>診療時間</h2>
+        <div class="table-wrap">
+          <table class="hours">
+            <caption>受付は診療終了の30分前までです</caption>
+            <thead>
+              <tr>
+                <th scope="col">時間</th>
+                <th scope="col" data-day="1">月</th>
+                <th scope="col" data-day="2">火</th>
+                <th scope="col" data-day="3">水</th>
+                <th scope="col" data-day="4">木</th>
+                <th scope="col" data-day="5">金</th>
+                <th scope="col" data-day="6">土</th>
+                <th scope="col" data-day="0">日・祝</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">9:00〜12:30</th>
+                <td data-day="1">●</td><td data-day="2">●</td><td data-day="3">●</td>
+                <td data-day="4">●</td><td data-day="5">●</td><td data-day="6">▲</td>
+                <td data-day="0" class="closed">休</td>
+              </tr>
+              <tr>
+                <th scope="row">15:00〜18:30</th>
+                <td data-day="1">●</td><td data-day="2">●</td><td data-day="3">●</td>
+                <td data-day="4" class="closed">休</td><td data-day="5">●</td><td data-day="6" class="closed">休</td>
+                <td data-day="0" class="closed">休</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="note">▲ 土曜日は 9:00〜13:00 です。休診日:木曜午後、土曜午後、日曜、祝日</p>
+      </div>
+    </section>
+
+    <!-- ============ 初めての方へ(順番がある内容なので番号つきリスト ol) ============ -->
+    <section class="section section-tint" id="first">
+      <div class="inner">
+        <h2>初めての方へ</h2>
+        <ol class="steps">
+          <li>
+            <h3>受付</h3>
+            <p>保険証(マイナ保険証)を受付にお出しください。他院の紹介状やお薬手帳があればお持ちください。</p>
+          </li>
+          <li>
+            <h3>問診票の記入</h3>
+            <p>痛む場所やいつからかを記入していただきます。来院前にダウンロードして書いてくることもできます。</p>
+          </li>
+          <li>
+            <h3>診察・検査</h3>
+            <p>医師が診察し、必要に応じてレントゲン検査を行います。結果をもとに、治療の方針をご説明します。</p>
+          </li>
+          <li>
+            <h3>治療・リハビリ</h3>
+            <p>医師の指示のもと、理学療法士がリハビリを行います。2回目以降はリハビリの予約ができます。</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ============ 医師紹介 ============ -->
+    <section class="section" id="doctor">
+      <div class="inner doctor">
+        <h2>医師紹介</h2>
+        <!-- 架空の医師なので、実在の人の顔写真は使わず、手の写真で雰囲気を伝える -->
+        <img class="doctor-photo"
+             src="https://images.unsplash.com/photo-1763982811968-14e8aba3be09?w=800&q=80&auto=format&fit=crop"
+             alt="2人の手がやさしく重なっている様子"
+             width="800" height="600" loading="lazy">
+        <div>
+          <p class="doctor-name">院長 水元 一郎<span>(架空の人物です)</span></p>
+          <p>「痛みの原因をきちんと説明すること」を大切にしています。なぜ痛むのかがわかると、リハビリにも前向きに取り組めるからです。気になることは、どんな小さなことでもご相談ください。</p>
+          <dl class="doctor-data">
+            <dt>専門</dt><dd>整形外科、スポーツ整形外科</dd>
+            <dt>資格</dt><dd>整形外科専門医</dd>
+          </dl>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ アクセス ============ -->
+    <section class="section section-tint" id="access">
+      <div class="inner access">
+        <h2>アクセス</h2>
+        <div class="access-body">
+          <dl class="access-data">
+            <dt>住所</dt><dd>〒000-0000 みなもと市中央1丁目2-3 みなもとビル1階</dd>
+            <dt>電車</dt><dd>みなもと駅 東口から徒歩3分</dd>
+            <dt>駐車場</dt><dd>クリニック前に5台</dd>
+            <dt>電話</dt><dd>000-000-0000</dd>
+          </dl>
+          <!-- 実在の地図は使わず、場所を示す枠だけ置いている -->
+          <div class="map" role="img" aria-label="地図(架空の住所のため表示していません)">
+            <p>地図<br><small>実際のサイトでは、ここに地図を埋め込みます</small></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ よくある質問 ============ -->
+    <!-- details と summary を使うと、JavaScript なしで開け閉めできる -->
+    <section class="section" id="faq">
+      <div class="inner">
+        <h2>よくある質問</h2>
+        <div class="faq">
+          <details>
+            <summary>予約なしでも受診できますか。</summary>
+            <p>はい。初めての方は予約なしで受診できます。混み合う時間帯はお待ちいただくことがあります。</p>
+          </details>
+          <details>
+            <summary>リハビリだけ受けることはできますか。</summary>
+            <p>リハビリは医師の指示のもとで行うため、最初に診察を受けていただく必要があります。</p>
+          </details>
+          <details>
+            <summary>子どもも診てもらえますか。</summary>
+            <p>はい。部活動のけがなど、小学生から受診いただけます。保護者の方とご来院ください。</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============ フッター ============ -->
+  <footer class="footer">
+    <div class="inner">
+      <p class="footer-name">みなもとリハビリクリニック</p>
+      <p>〒000-0000 みなもと市中央1丁目2-3 みなもとビル1階 電話 000-000-0000</p>
+      <p class="footer-note">このサイトは、架空のクリニックを想定して制作したサンプルです。実在の医療機関、人物、住所とは関係ありません。</p>
+      <!-- 【つながり⑥】id="year" に js/script.js が今年の年を入れる -->
+      <p><small>&copy; <span id="year"></span> Minamoto Rehabilitation Clinic(sample)</small></p>
+    </div>
+  </footer>
+
+  <!-- 【つながり⑦】動きは js フォルダの script.js に書く。HTMLを全部読んでから動かすため最後に置く -->
+  <script src="js/script.js"></script>
+</body>
+</html>
