@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>間取設計室 | 一級建築士事務所</title>
+  <meta name="description" content="架空の設計事務所を想定した制作サンプルです。">
+
+  <!-- フォント:見出しは明朝(Shippori Mincho)、本文はゴシック -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <!-- 【つながり①】見た目は css/style.css -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <a href="#main" class="skip">本文へ移動</a>
+
+  <!-- ============ ヘッダー ============ -->
+  <header class="header">
+    <a href="#top" class="logo">
+      <span class="logo-ja">間取設計室</span>
+      <span class="logo-en">Madori Architects</span>
+    </a>
+
+    <!-- 【つながり②】js/script.js がメニューを開け閉めする(クリニックと同じ仕組み) -->
+    <button class="menu-button" id="menu-button" aria-expanded="false" aria-controls="global-nav">メニュー</button>
+
+    <nav class="nav" id="global-nav" aria-label="メインメニュー">
+      <ul>
+        <li><a href="#works">作品</a></li>
+        <li><a href="#approach">考え方</a></li>
+        <li><a href="#process">設計の流れ</a></li>
+        <li><a href="#office">事務所概要</a></li>
+        <li><a href="#contact">お問い合わせ</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main">
+
+    <!-- ============ ファーストビュー ============ -->
+    <section class="hero" id="top">
+      <img class="hero-photo"
+           src="https://images.unsplash.com/photo-1549791084-5f78368b208b?w=2000&q=80&auto=format&fit=crop"
+           alt="青空を背景にした、白いコンクリートの建物の外壁"
+           width="2000" height="1333">
+      <div class="hero-text">
+        <h1>暮らしの動線から、<br>建築を考える。</h1>
+        <p>朝起きてから夜眠るまで、家の中で人がどう動くか。間取設計室は、その動きを丁寧に聞き取ることから設計を始めます。住宅、集合住宅、店舗の設計と工事監理を行う一級建築士事務所です。</p>
+      </div>
+    </section>
+
+    <!-- ============ 作品(このサイトの中心) ============ -->
+    <section class="section" id="works">
+      <div class="section-head">
+        <h2>作品</h2>
+        <!-- 【つながり③】ボタンの data-filter を js/script.js が読み、作品を絞り込む -->
+        <div class="filters" role="group" aria-label="作品の種類で絞り込む">
+          <button type="button" class="filter is-active" data-filter="all" aria-pressed="true">すべて</button>
+          <button type="button" class="filter" data-filter="住宅" aria-pressed="false">住宅</button>
+          <button type="button" class="filter" data-filter="集合住宅" aria-pressed="false">集合住宅</button>
+          <button type="button" class="filter" data-filter="店舗" aria-pressed="false">店舗</button>
+        </div>
+      </div>
+
+      <!-- 【つながり④】作品のカードは、js/script.js の works(作品の一覧データ)から自動で作られる -->
+      <ul class="works" id="works-list"></ul>
+    </section>
+
+    <!-- ============ 考え方 ============ -->
+    <section class="section section-dark" id="approach">
+      <h2>考え方</h2>
+      <div class="approach">
+        <div>
+          <h3>聞くことから始める</h3>
+          <p>最初の打ち合わせでは図面を描きません。家族の一日の過ごし方、休日の使い方、困っていることを、時間をかけて伺います。</p>
+        </div>
+        <div>
+          <h3>動線を短く、視線を長く</h3>
+          <p>家事や移動の距離はできるだけ短くし、窓や吹き抜けで視線の抜けをつくります。小さな敷地でも、広く感じられる家を目指します。</p>
+        </div>
+        <div>
+          <h3>手入れしながら長く住む</h3>
+          <p>木や石など、年月とともに味わいが増す素材を選びます。完成後も定期的に訪問し、住まいの手入れを一緒に考えます。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 設計の流れ(順番がある内容なので番号つきリスト) ============ -->
+    <section class="section" id="process">
+      <h2>設計の流れ</h2>
+      <ol class="process">
+        <li><h3>ご相談</h3><p>ご要望やご予算を伺います。初回のご相談は無料です。</p><span class="term">1〜2週間</span></li>
+        <li><h3>敷地の調査</h3><p>日当たり、風の向き、周りの建物、法律上の制限を調べます。</p><span class="term">2週間</span></li>
+        <li><h3>基本設計</h3><p>模型と図面で、間取りと外観のご提案を重ねます。</p><span class="term">2〜3か月</span></li>
+        <li><h3>実施設計</h3><p>工事に必要な詳細図面をつくり、工事費の見積もりを取ります。</p><span class="term">2〜3か月</span></li>
+        <li><h3>工事監理</h3><p>図面どおりに工事が進んでいるか、現場で確認します。</p><span class="term">4〜8か月</span></li>
+        <li><h3>お引き渡し</h3><p>完成後も、1年目と2年目に点検に伺います。</p><span class="term">以降も継続</span></li>
+      </ol>
+    </section>
+
+    <!-- ============ 事務所概要 ============ -->
+    <section class="section" id="office">
+      <h2>事務所概要</h2>
+      <dl class="office">
+        <dt>名称</dt><dd>間取設計室</dd>
+        <dt>代表</dt><dd>間取 一真(架空の人物です)</dd>
+        <dt>登録</dt><dd>一級建築士事務所(架空の登録です)</dd>
+        <dt>所在地</dt><dd>〒000-0000 みなもと市中央3丁目4-5</dd>
+        <dt>設立</dt><dd>2015年</dd>
+        <dt>業務</dt><dd>住宅、集合住宅、店舗の設計と工事監理、リノベーションの設計</dd>
+      </dl>
+    </section>
+
+    <!-- ============ お問い合わせ ============ -->
+    <section class="section" id="contact">
+      <h2>お問い合わせ</h2>
+      <p class="contact-lead">設計のご相談、見学のご希望など、お気軽にお送りください。</p>
+
+      <!-- 【つながり⑤】送信ボタンを押すと js/script.js が入力をチェックする -->
+      <!-- novalidate … ブラウザ標準のチェックを止めて、自分で書いたチェックを使う -->
+      <form class="form" id="contact-form" novalidate>
+        <div class="field">
+          <label for="name">お名前<span class="required">必須</span></label>
+          <input type="text" id="name" name="name" autocomplete="name">
+          <p class="error" id="name-error"></p>
+        </div>
+        <div class="field">
+          <label for="email">メールアドレス<span class="required">必須</span></label>
+          <input type="email" id="email" name="email" autocomplete="email">
+          <p class="error" id="email-error"></p>
+        </div>
+        <div class="field">
+          <label for="kind">ご相談の種類</label>
+          <select id="kind" name="kind">
+            <option>住宅の新築</option>
+            <option>集合住宅</option>
+            <option>店舗</option>
+            <option>リノベーション</option>
+            <option>その他</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="message">ご相談内容<span class="required">必須</span></label>
+          <textarea id="message" name="message" rows="6"></textarea>
+          <p class="error" id="message-error"></p>
+        </div>
+        <button type="submit" class="submit">内容を確認して送信</button>
+        <p class="form-result" id="form-result" aria-live="polite"></p>
+      </form>
+    </section>
+
+  </main>
+
+  <!-- ============ 作品を大きく見る窓(dialog) ============ -->
+  <!-- 【つながり⑥】作品カードを押すと js/script.js がここに中身を入れて開く -->
+  <dialog class="modal" id="modal" aria-labelledby="modal-title">
+    <button type="button" class="modal-close" id="modal-close">閉じる</button>
+    <img class="modal-photo" id="modal-photo" src="" alt="">
+    <div class="modal-body">
+      <p class="modal-category" id="modal-category"></p>
+      <h3 id="modal-title"></h3>
+      <p id="modal-text"></p>
+      <dl class="modal-data" id="modal-data"></dl>
+    </div>
+  </dialog>
+
+  <!-- ============ フッター ============ -->
+  <footer class="footer">
+    <p class="footer-name">間取設計室</p>
+    <p>このサイトは、架空の設計事務所を想定して制作したサンプルです。掲載している作品、人物、住所は実在しません。写真は Unsplash の無料写真を使用しています。</p>
+    <p><small>&copy; <span id="year"></span> Madori Architects(sample)</small></p>
+  </footer>
+
+  <!-- 【つながり⑦】動きは js/script.js -->
+  <script src="js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,321 @@
+/* =========================================================
+   間取設計室 style.css
+   方針:写真(建物)を主役にして、文字と色は控えめにする
+   ========================================================= */
+
+/* ---------- 1. 色と文字 ---------- */
+:root {
+  --paper: #f3f3f1;   /* 背景(コンクリートのような白) */
+  --ink: #1c1c1c;     /* 文字 */
+  --sub: #686866;     /* 補足の文字 */
+  --line: #cfcfcb;    /* 区切り線 */
+  --dark: #262624;    /* 「考え方」の暗い背景 */
+
+  --mincho: "Shippori Mincho", "Yu Mincho", "Hiragino Mincho ProN", serif;
+  --gothic: "Zen Kaku Gothic New", "Hiragino Sans", "Meiryo", sans-serif;
+
+  --side: clamp(20px, 5vw, 80px); /* 画面の左右の余白(画面幅に合わせて変わる) */
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; scroll-padding-top: 72px; }
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--gothic);
+  font-size: 16px;
+  line-height: 1.9;
+  letter-spacing: 0.04em;
+}
+
+a { color: inherit; }
+img { display: block; max-width: 100%; height: auto; }
+
+a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 3px;
+}
+
+h1, h2, h3 { font-family: var(--mincho); font-weight: 700; line-height: 1.5; }
+h2 { font-size: 1.9rem; letter-spacing: 0.08em; }
+h3 { font-size: 1.15rem; }
+
+.skip { position: absolute; left: -9999px; }
+.skip:focus { left: 16px; top: 16px; z-index: 100; background: var(--paper); padding: 8px 16px; }
+
+.section { padding: 112px var(--side); }
+.section > h2 { margin-bottom: 48px; }
+
+/* ---------- 2. ヘッダー ---------- */
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px var(--side);
+  background: rgba(243, 243, 241, 0.94);
+  border-bottom: 1px solid var(--line);
+}
+.logo { text-decoration: none; display: flex; align-items: baseline; gap: 14px; }
+.logo-ja { font-family: var(--mincho); font-weight: 700; font-size: 1.3rem; letter-spacing: 0.12em; }
+.logo-en { font-size: 0.75rem; color: var(--sub); letter-spacing: 0.1em; }
+
+.nav ul { display: flex; gap: 32px; list-style: none; }
+.nav a { text-decoration: none; font-size: 0.92rem; }
+.nav a:hover { text-decoration: underline; text-underline-offset: 6px; }
+
+.menu-button { display: none; }
+
+/* ---------- 3. ファーストビュー ---------- */
+.hero-photo {
+  width: 100%;
+  height: 78vh;
+  min-height: 420px;
+  object-fit: cover;
+}
+.hero-text {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 48px;
+  align-items: end;
+  padding: 56px var(--side) 0;
+}
+.hero h1 { font-size: clamp(1.9rem, 4vw, 3rem); letter-spacing: 0.08em; }
+.hero-text p { color: var(--sub); max-width: 32em; }
+
+/* ---------- 4. 作品 ---------- */
+.section-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 24px;
+  flex-wrap: wrap;
+  margin-bottom: 40px;
+}
+
+.filters { display: flex; flex-wrap: wrap; gap: 8px; }
+.filter {
+  font: inherit;
+  font-size: 0.9rem;
+  padding: 6px 18px;
+  border: 1px solid var(--ink);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--ink);
+  cursor: pointer;
+}
+/* 【つながり】js/script.js が選んだボタンに is-active をつける */
+.filter.is-active { background: var(--ink); color: var(--paper); }
+
+.works {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 56px 32px;
+}
+/* 1つ目の作品だけ横に2マス分使って大きく見せる */
+.work:first-child { grid-column: span 2; grid-row: span 2; }
+.work[hidden] { display: none; }
+
+.work-button {
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: none;
+  background: none;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: zoom-in;   /* マウスを乗せると虫めがねのマーク */
+}
+.work-button img {
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  transition: opacity 0.3s;
+}
+.work:first-child .work-button img { aspect-ratio: auto; height: calc(100% - 64px); min-height: 360px; }
+.work:first-child .work-button { height: 100%; }
+.work-button:hover img { opacity: 0.85; }
+
+.work-title { display: block; margin-top: 14px; font-family: var(--mincho); font-weight: 700; font-size: 1.15rem; }
+.work-meta { display: block; font-size: 0.85rem; color: var(--sub); }
+
+/* ---------- 5. 考え方(暗い背景) ---------- */
+.section-dark { background: var(--dark); color: #ecece8; }
+.approach {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 48px;
+}
+.approach h3 { font-size: 1.3rem; padding-top: 20px; border-top: 1px solid #5c5c58; }
+.approach p { margin-top: 12px; color: #b9b9b3; }
+
+/* ---------- 6. 設計の流れ ---------- */
+.process {
+  list-style: none;
+  counter-reset: step;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 48px 40px;
+}
+.process li { counter-increment: step; position: relative; padding-top: 56px; }
+.process li::before {
+  content: counter(step);          /* 1〜6 が自動で入る */
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-family: var(--mincho);
+  font-size: 2.4rem;
+  line-height: 1;
+  color: var(--line);
+}
+.process p { margin-top: 8px; color: var(--sub); }
+.term { display: inline-block; margin-top: 10px; font-size: 0.85rem; border-bottom: 1px solid var(--ink); }
+
+/* ---------- 7. 事務所概要 ---------- */
+.office {
+  display: grid;
+  grid-template-columns: 8em 1fr;
+  max-width: 760px;
+  border-top: 1px solid var(--ink);
+}
+.office dt, .office dd { padding: 18px 0; border-bottom: 1px solid var(--line); }
+.office dt { color: var(--sub); }
+
+/* ---------- 8. お問い合わせ ---------- */
+.contact-lead { margin: -24px 0 40px; color: var(--sub); }
+.form { max-width: 640px; }
+.field { margin-bottom: 28px; }
+.field label { display: block; font-weight: 700; margin-bottom: 8px; }
+.required { margin-left: 10px; font-size: 0.75rem; font-weight: 500; color: var(--sub); }
+
+.field input, .field select, .field textarea {
+  width: 100%;
+  font: inherit;
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  border-radius: 0;
+  background: #fff;
+  color: var(--ink);
+}
+/* 【つながり】入力に問題があると js/script.js が aria-invalid="true" をつける */
+.field [aria-invalid="true"] { border: 2px solid var(--ink); }
+.error { margin-top: 6px; font-size: 0.85rem; font-weight: 700; }
+.error:empty { display: none; }
+
+.submit {
+  font: inherit;
+  font-weight: 700;
+  padding: 14px 40px;
+  border: none;
+  background: var(--ink);
+  color: var(--paper);
+  cursor: pointer;
+}
+.submit:hover { opacity: 0.85; }
+.form-result { margin-top: 20px; }
+
+/* ---------- 9. 作品を大きく見る窓(dialog) ---------- */
+.modal {
+  width: min(1100px, 92vw);
+  max-height: 90vh;
+  margin: auto;
+  border: none;
+  padding: 0;
+  background: var(--paper);
+  color: var(--ink);
+  overflow: auto;
+}
+.modal::backdrop { background: rgba(20, 20, 18, 0.8); } /* 窓の外側を暗くする */
+
+.modal-photo { width: 100%; max-height: 62vh; object-fit: cover; }
+.modal-body {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+  gap: 8px 48px;
+  padding: 32px 40px 40px;
+}
+.modal-category { grid-column: 1 / -1; font-size: 0.85rem; color: var(--sub); }
+.modal-body h3 { grid-column: 1 / -1; font-size: 1.6rem; margin-bottom: 8px; }
+.modal-data { display: grid; grid-template-columns: 6em 1fr; gap: 6px 16px; align-self: start; font-size: 0.92rem; }
+.modal-data dt { color: var(--sub); }
+
+.modal-close {
+  position: absolute;   /* 写真の右上に重ねて置く */
+  top: 0;
+  right: 0;
+  z-index: 1;
+  font: inherit;
+  font-size: 0.9rem;
+  padding: 10px 20px;
+  border: none;
+  background: var(--ink);
+  color: var(--paper);
+  cursor: pointer;
+}
+
+/* ---------- 10. フッター ---------- */
+.footer {
+  padding: 56px var(--side);
+  border-top: 1px solid var(--ink);
+  font-size: 0.85rem;
+  color: var(--sub);
+}
+.footer p + p { margin-top: 8px; }
+.footer-name { font-family: var(--mincho); font-weight: 700; font-size: 1.1rem; color: var(--ink); letter-spacing: 0.12em; }
+
+/* =========================================================
+   11. 画面が狭いとき
+   ========================================================= */
+@media (max-width: 960px) {
+  .works { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .approach, .process { grid-template-columns: 1fr; gap: 40px; }
+  .hero-text { grid-template-columns: 1fr; gap: 20px; }
+}
+
+@media (max-width: 760px) {
+  .menu-button {
+    display: block;
+    font: inherit;
+    font-size: 0.9rem;
+    padding: 6px 14px;
+    border: 1px solid var(--ink);
+    background: transparent;
+    color: var(--ink);
+    cursor: pointer;
+  }
+  .nav {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: var(--paper);
+    border-bottom: 1px solid var(--line);
+    padding: 8px var(--side) 16px;
+  }
+  .nav.is-open { display: block; }
+  .nav ul { flex-direction: column; gap: 0; }
+  .nav a { display: block; padding: 12px 0; border-bottom: 1px solid var(--line); }
+  .logo-en { display: none; }
+
+  .section { padding: 72px var(--side); }
+  .hero-photo { height: 56vh; min-height: 300px; }
+  .works { grid-template-columns: 1fr; gap: 40px; }
+  .work:first-child { grid-column: auto; grid-row: auto; }
+  .work:first-child .work-button img { height: auto; min-height: 0; aspect-ratio: 3 / 2; }
+  .modal-body { grid-template-columns: 1fr; padding: 24px; }
+  .office { grid-template-columns: 1fr; }
+  .office dt { padding-bottom: 0; border-bottom: none; }
+  .office dd { padding-top: 4px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .work-button img { transition: none; }
+}
